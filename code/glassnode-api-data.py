@@ -119,6 +119,12 @@ df['SMA_3'] = df['price_usd_close'].rolling(window=3).mean()
 df['SMA_7'] = df['price_usd_close'].rolling(window=7).mean()
 df.to_csv(r'G:\MScProject\data\raw_add_col.csv')
 
+#calss for next dat price up or down
+condition = [(abs(df["per_1_d"])<0.005),(df["per_1_d"]<=-0.005),(df["per_1_d"]>=0.005)]
+values = [0,-1,1]
+import numpy as np
+df['up_do_1d'] = np.select(condition,values)
+
 
 #part4
 #data preprocess
